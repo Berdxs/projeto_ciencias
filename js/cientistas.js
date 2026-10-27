@@ -95,7 +95,7 @@ const CIENTISTAS = [
     ficticia: false,
     slug: "jessica-gloria-jorge-batista",
     nome: "Jéssica Glória Jorge Batista",
-    foto: "assets/jessica-teste.jpg",
+    foto: "assets/jessica.jpeg",
     fotoAlt: "Retrato de Jéssica Glória Jorge Batista",
     fotoCredito: "Jéssica Glória Jorge Batista",
     atuacao: "Diretora de Ensino Técnico e Professora de Física do IFNMG - Campus Salinas",

@@ -28,7 +28,7 @@ if (trilho) {
         ${c.ficticia ? '<span class="aviso-ficticia">Exemplo fictício</span>' : ""}
         <h3>${esc(c.nome)}</h3>
         <p class="area">${esc(c.atuacao)}</p>
-        ${ok(c.mensagemCard) ? `<p class="msg">${esc(c.mensagemCard)}</p>` : ""}
+        ${ok(c.mensagemCard) ? `<p class="msg">"${esc(c.mensagemCard)}"</p>` : ""}
         <span class="ver">Conheça sua história</span>
       </div></a></li>`).join("");
 
@@ -139,7 +139,7 @@ if (alvo) {
       </div></section>` : ""}
 
       ${ok(m.texto) ? `<section class="bloco"><div class="motiva"><h2>Mensagem de motivação</h2>
-        <p>${esc(m.texto)}</p>
+        <p>"${esc(m.texto)}"</p>
         ${m.tipo === "sintese-do-projeto" ? "<small>Reflexão da equipe Matrix inspirada na trajetória; não é citação da cientista.</small>" : ""}</div></section>` : ""}
 
       ${fontes.length ? `<section class="bloco"><h2>Fontes e referências</h2>
