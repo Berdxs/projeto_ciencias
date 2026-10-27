@@ -33,16 +33,67 @@ if (trilho) {
       </div></a></li>`).join("");
 
   const ant = document.getElementById("ant"), prox = document.getElementById("prox");
+  const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const passo = () => trilho.querySelector("li").getBoundingClientRect().width + 20;
-  const atualiza = () => {
-    ant.disabled = trilho.scrollLeft < 4;
-    prox.disabled = trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 4;
-  };
-  ant.onclick = () => trilho.scrollBy({ left: -passo() });
-  prox.onclick = () => trilho.scrollBy({ left: passo() });
-  trilho.addEventListener("scroll", atualiza, { passive: true });
-  window.addEventListener("resize", atualiza);
-  atualiza();
+
+  if (reduz) {
+    /* Movimento reduzido: carrossel parado, só com setas e arraste */
+    const atualiza = () => {
+      ant.disabled = trilho.scrollLeft < 4;
+      prox.disabled = trilho.scrollLeft + trilho.clientWidth >= trilho.scrollWidth - 4;
+    };
+    ant.onclick = () => trilho.scrollBy({ left: -passo() });
+    prox.onclick = () => trilho.scrollBy({ left: passo() });
+    trilho.addEventListener("scroll", atualiza, { passive: true });
+    window.addEventListener("resize", atualiza);
+    atualiza();
+  } else {
+    /* Rotação contínua e suave, em loop infinito (cards duplicados de forma invisível) */
+    const originais = [...trilho.children];
+    originais.forEach(li => {
+      const copia = li.cloneNode(true);
+      copia.setAttribute("aria-hidden", "true");
+      copia.querySelector("a").tabIndex = -1;
+      trilho.append(copia);
+    });
+    trilho.style.scrollSnapType = "none";
+    const larguraSet = () => trilho.children[originais.length].offsetLeft - trilho.children[0].offsetLeft;
+
+    const VELOCIDADE = 35; // pixels por segundo (menor = mais lento)
+    let ligado = true, sobre = false, manual = false, pos = 0, ultimo = 0, tManual = 0;
+
+    const botao = document.createElement("button");
+    botao.type = "button";
+    const atualizaBotao = () => {
+      botao.textContent = ligado ? "❚❚" : "▶";
+      botao.setAttribute("aria-label", ligado ? "Pausar rotação automática" : "Iniciar rotação automática");
+    };
+    botao.addEventListener("click", () => { ligado = !ligado; atualizaBotao(); });
+    document.querySelector(".setas").prepend(botao);
+    atualizaBotao();
+
+    function quadro(t) {
+      requestAnimationFrame(quadro);
+      const dt = Math.min(t - ultimo, 64) / 1000; ultimo = t;
+      const larg = larguraSet();
+      if (ligado && !sobre && !manual) { pos += VELOCIDADE * dt; trilho.scrollLeft = pos; }
+      else pos = trilho.scrollLeft;
+      if (trilho.scrollLeft >= larg) { trilho.scrollLeft -= larg; pos = trilho.scrollLeft; }
+    }
+    requestAnimationFrame(t => { ultimo = t; quadro(t); });
+
+    // setas e gestos: pausam a rotação por um instante para o movimento manual não ser cancelado
+    const pausaManual = (ms = 1600) => { manual = true; clearTimeout(tManual); tManual = setTimeout(() => manual = false, ms); };
+    prox.onclick = () => { pausaManual(); trilho.scrollBy({ left: passo(), behavior: "smooth" }); };
+    ant.onclick = () => {
+      pausaManual();
+      if (trilho.scrollLeft < passo()) trilho.scrollLeft += larguraSet();
+      trilho.scrollBy({ left: -passo(), behavior: "smooth" });
+    };
+    trilho.addEventListener("wheel", () => pausaManual(2500), { passive: true });
+    ["mouseenter", "focusin", "touchstart"].forEach(ev => trilho.addEventListener(ev, () => sobre = true, { passive: true }));
+    ["mouseleave", "focusout", "touchend"].forEach(ev => trilho.addEventListener(ev, () => { sobre = false; }, { passive: true }));
+  }
 }
 
 /* ---------- Página individual ---------- */
