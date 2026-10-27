@@ -12,7 +12,7 @@
    ===================================================================== */
 
 const CIENTISTAS = [
-  {
+  /*{
     ficticia: false,
     slug: "aline-nogueira-alves-santiago",
     nome: "Aline Nogueira Alves Santiago",
@@ -45,7 +45,7 @@ const CIENTISTAS = [
     legado: null,
     curiosidades: [],
     fontes: []
-  },
+  },*/
 
   {
     ficticia: false,
@@ -134,8 +134,8 @@ const CIENTISTAS = [
     foto: "assets/josy-teste.jpg",
     fotoAlt: "Retrato de Josy Dayanny Alves Souza",
     fotoCredito: "Josy Dayanny Alves Souza",
-    atuacao: "Professora de Geografia do IFNMG - Campus Januária",
-    mensagemCard: "...",
+    atuacao: "Professora de Geografia do IFNMG - Campus Janaúba e Professora no Mestrado em Relações Étnico-Raciais e Ensino (IFNMG/Unimontes)",
+    mensagemCard: "Meninas e mulheres, nós somos caminhos possíveis para todas as mudanças de que a sociedade precisa. Dediquem-se à ciência e à pesquisa, sejam inspirações para outras pessoas e transformem o mundo em um lugar melhor para existir!",
     nacionalidade: null,
     nascimento: null,
     falecimento: null,
@@ -155,7 +155,7 @@ const CIENTISTAS = [
     },
     mensagemMotivacao: {
       texto:
-        "..."
+        "Meninas e mulheres, nós somos caminhos possíveis para todas as mudanças de que a sociedade precisa. Dediquem-se à ciência e à pesquisa, sejam inspirações para outras pessoas e transformem o mundo em um lugar melhor para existir!"
     },
     legado: null,
     curiosidades: [],
@@ -300,27 +300,27 @@ const CIENTISTAS = [
     fotoAlt: "Retrato de Renata Santos Maia",
     fotoCredito: "Renata Santos Maia",
     atuacao: "Professora de História do IFNMG - Campus Salinas",
-    mensagemCard: "...",
+    mensagemCard: "Meninas e mulheres, acreditem no seu potencial, o futuro pertence a vocês, lutem por ele!",
     nacionalidade: null,
     nascimento: null,
     falecimento: null,
     apresentacao: null,
     atuacaoDetalhada: null,
     trajetoria: [
-      "..."
+      `Pós-doutora em estudos de gênero e violência, com bolsa CNPq. Doutora em História pela Universidade Federal de Santa Catarina - UFSC, com mestrado e graduação em História pela Unimontes. Desenvolve estudos sobre gênero, cinema, sexualidades e feminismos. Possui vários artigos publicados em revistas científicas e capítulos de livro, sendo o trabalho mais recente a organização da obra "Violência de gênero no Norte de Minas: perspectiva histórica e interseccional".`
     ],
     contribuicoes: [],
     linhaDoTempo: [],
     desafios: {
       texto:
-        "...",
+        "Entre outros fatores, o Brasil tem dificuldade em enxergar nas meninas e mulheres potenciais cientistas por causa da ideia, ainda presente na sociedade, que as associa ao espaço doméstico e às tarefas de cuidado. Isso causa uma sobrecarga emocional e também de trabalho.",
       declaracao: null,
       declaracaoFonte: null,
       analiseContextual: null
     },
     mensagemMotivacao: {
       texto:
-        "..."
+        "Meninas e mulheres, acreditem no seu potencial, o futuro pertence a vocês, lutem por ele!"
     },
     legado: null,
     curiosidades: [],
