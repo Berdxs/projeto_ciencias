@@ -49,7 +49,7 @@ if (alvo) {
       <p>O endereço não corresponde a nenhuma cientista cadastrada.</p>
       <a class="btn" href="index.html#cientistas">Voltar para as cientistas</a></div>`;
   } else {
-    document.title = `${c.nome} — Mulheres na Ciência`;
+    document.title = `${c.nome} — Nossa Cientista`;
     const { anterior, proxima } = getVizinhas(c.slug);
     const d = c.desafios, m = c.mensagemMotivacao;
     const datas = [c.nacionalidade, c.nascimento ? `Nascimento: ${c.nascimento}` : "", c.falecimento ? `Falecimento: ${c.falecimento}` : ""].filter(Boolean);
@@ -88,8 +88,8 @@ if (alvo) {
 
       ${c.curiosidades?.length ? `<section class="bloco"><h2>Curiosidades</h2><ul class="texto">${c.curiosidades.map(x => `<li>${esc(x)}</li>`).join("")}</ul></section>` : ""}
 
-      <section class="bloco"><div class="motiva"><h2>Para quem quer seguir a ciência</h2>
-        <p>${esc(m.texto)}</p>
+      <section class="bloco"><div class="motiva"><h2>Para quem quer seguir a ciência:</h2>
+        <p>"${esc(m.texto)}"</p>
         <small>${m.tipo === "sintese-do-projeto" ? "Reflexão da equipe Matrix inspirada na trajetória; não é citação da cientista." : "Declaração da cientista."}</small></div></section>
 
       <section class="bloco"><h2>Fontes e referências</h2>
